@@ -99,6 +99,11 @@ func (r *RedisRepo[T]) Get(id string) (T, bool, error) {
 	return t, true, err
 }
 
+func (r *RedisRepo[T]) Count() (int64, error) {
+	val, err := r.rdb.DBSize(r.getCtx()).Result()
+	return val, err
+}
+
 func (r *RedisRepo[T]) Add(val T) error {
 	valStr, err := r.serialize(val)
 	if err != nil {

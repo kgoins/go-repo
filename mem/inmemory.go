@@ -57,6 +57,17 @@ func (s MemRepo[T]) GetAll() ([]T, error) {
 	return vals, nil
 }
 
+func (s MemRepo[T]) Count() (int64, error) {
+	i := int64(0)
+
+	s.m.Range(func(key, value any) bool {
+		i++
+		return true
+	})
+
+	return i, nil
+}
+
 func (s MemRepo[T]) Add(v T) error {
 	data, err := s.codec.Marshal(v)
 	if err != nil {

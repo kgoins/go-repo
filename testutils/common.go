@@ -54,3 +54,24 @@ func TestRepo(repo gorepo.Repo[Foo], t *testing.T) {
 	r.NoError(err)
 	r.False(found, "A value was found, but no value was expected")
 }
+
+// Tests basic CRUD ops against the given repo
+func TestRepoGetAll(repo gorepo.Repo[Foo], t *testing.T) {
+	r := require.New(t)
+
+	f1 := Foo{id: "1"}
+	f2 := Foo{id: "2"}
+	f3 := Foo{id: "3"}
+
+	repo.Add(f1)
+	repo.Add(f2)
+	repo.Add(f3)
+
+	count, err := repo.Count()
+	r.NoError(err)
+	r.Equal(int64(3), count)
+
+	vals, err := repo.GetAll()
+	r.NoError(err)
+	r.Equal(int64(3), int64(len(vals)))
+}

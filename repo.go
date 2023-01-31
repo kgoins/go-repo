@@ -11,6 +11,7 @@ type Repo[T Identifiable] interface {
 
 	Get(id string) (T, bool, error)
 	GetAll() ([]T, error)
+	Count() (int64, error)
 
 	// Duplicate Adds will overwrite with the latest value
 	Add(entry T) error
