@@ -3,8 +3,8 @@ package mem_test
 import (
 	"testing"
 
-	"github.com/kgoins/go-repo.git/mem"
-	"github.com/kgoins/go-repo.git/testutils"
+	"github.com/kgoins/go-repo/mem"
+	"github.com/kgoins/go-repo/testutils"
 )
 
 func TestMemRepo(t *testing.T) {

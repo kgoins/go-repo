@@ -1,4 +1,4 @@
-module github.com/kgoins/go-repo.git
+module github.com/kgoins/go-repo
 
 go 1.19
 

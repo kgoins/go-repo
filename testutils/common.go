@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	gorepo "github.com/kgoins/go-repo.git"
+	gorepo "github.com/kgoins/go-repo"
 )
 
 type Foo struct {

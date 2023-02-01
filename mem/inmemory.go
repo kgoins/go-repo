@@ -3,8 +3,8 @@ package mem
 import (
 	"sync"
 
-	gorepo "github.com/kgoins/go-repo.git"
-	"github.com/kgoins/go-repo.git/codecs"
+	gorepo "github.com/kgoins/go-repo"
+	"github.com/kgoins/go-repo/codecs"
 )
 
 type MemRepo[T gorepo.Identifiable] struct {

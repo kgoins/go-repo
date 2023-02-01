@@ -6,8 +6,8 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	gorepo "github.com/kgoins/go-repo.git"
-	"github.com/kgoins/go-repo.git/codecs"
+	gorepo "github.com/kgoins/go-repo"
+	"github.com/kgoins/go-repo/codecs"
 )
 
 type RedisRepo[T gorepo.Identifiable] struct {
