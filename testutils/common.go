@@ -9,12 +9,13 @@ import (
 )
 
 type Foo struct {
+	ID  string
 	Bar string
-	id  string
+	baz string
 }
 
 func (f Foo) GetID() string {
-	return f.id
+	return f.ID
 }
 
 // Tests basic CRUD ops against the given repo
@@ -30,8 +31,9 @@ func TestRepo(repo gorepo.Repo[Foo], t *testing.T) {
 	r.NoError(err)
 
 	val := Foo{
+		ID:  key,
 		Bar: "baz",
-		id:  key,
+		baz: "futz",
 	}
 
 	err = repo.Add(val)
@@ -45,7 +47,8 @@ func TestRepo(repo gorepo.Repo[Foo], t *testing.T) {
 	r.NoError(err)
 	r.True(found, "No value was found, but should have been")
 	r.Equal(expected.Bar, retVal.Bar)
-	r.Empty(retVal.id) // private vars not expected to be retained
+	r.NotEmpty(retVal.GetID())
+	r.Empty(retVal.baz) // private vars not expected to be retained
 
 	err = repo.Remove(key)
 	r.NoError(err)
@@ -59,9 +62,9 @@ func TestRepo(repo gorepo.Repo[Foo], t *testing.T) {
 func TestRepoGetAll(repo gorepo.Repo[Foo], t *testing.T) {
 	r := require.New(t)
 
-	f1 := Foo{id: "1"}
-	f2 := Foo{id: "2"}
-	f3 := Foo{id: "3"}
+	f1 := Foo{ID: "1"}
+	f2 := Foo{ID: "2"}
+	f3 := Foo{ID: "3"}
 
 	repo.Add(f1)
 	repo.Add(f2)
